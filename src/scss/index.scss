@@ -1,1 +1,135 @@
+// Font Import
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
+// Variables for colors and fonts
+$primary-color: #D94E48; // Coral Red
+$secondary-color: #A59BB0; // Lavender Gray
+$background-color: #FFFFFF; // White
+$card-background: #F7F7F7; // Light Gray
+$text-color: #333333; // Dark Gray
+$font-family: 'Montserrat', sans-serif; // Modern font family
+
+// Global styles
+body {
+    background-color: $background-color; // Body background
+    font-family: $font-family; // Font family for body
+    color: $text-color; // Text color
+    margin: 0; // Remove default margin
+    padding: 0; // Remove default padding
+}
+
+// Navbar styles
+.navbar {
+    background-color: $card-background; // Navbar background
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); // Subtle shadow
+}
+
+// Header styles
+.auth-header {
+    font-size: 2.5rem; // Increase font size for the header
+    font-weight: bold; // Make the font bold
+    text-align: center; // Center text
+    color: $text-color; // Use the text color defined in your variables
+    margin-bottom: 20px; // Space below the header
+}
+.navbar {
+    background-color: $background-color; // Use your background color
+    border-bottom: 2px solid $primary-color; // Bottom border for distinction
+    transition: background-color 0.3s ease; // Smooth transition on scroll
+
+    &.shadow-sm {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Subtle shadow
+    }
+
+    .navbar-brand {
+        font-size: 1.5rem; // Increase the brand font size
+    }
+
+    .nav-link {
+        color: $text-color; // Text color for links
+        font-weight: 500; // Slightly bolder font for better visibility
+        margin-left: 15px; // Space between links
+        transition: color 0.3s; // Smooth transition on hover
+
+        &:hover {
+            color: darken($primary-color, 10%); // Darken color on hover
+        }
+    }
+
+    .dropdown-item {
+        color: $text-color; // Text color for dropdown items
+
+        &:hover {
+            background-color: $primary-color; // Change background on hover
+            color: white; // Change text color on hover
+        }
+    }
+}
+
+// Tagline styles
+.tagline {
+    text-align: center; // Center text
+    color: $secondary-color; // Tagline text color
+    margin-bottom: 30px; // Margin below tagline
+}
+
+// Authentication container styles
+.auth-container {
+    margin-top: 50px; // Space above the auth container
+}
+
+// Card styles
+.card {
+    border-radius: 8px; // Rounded corners
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); // Card shadow
+}
+
+// Form styles
+.form-label {
+    font-weight: bold; // Bold labels
+}
+
+input[type="text"],
+input[type="password"] {
+    border-radius: 4px; // Rounded corners for inputs
+}
+
+// Button styles
+.btn {
+    transition: background-color 0.3s ease; // Smooth transition for buttons
+}
+
+.btn-primary {
+    background-color: $primary-color; // Primary button color
+    border: none; // No border
+}
+
+.btn-primary:hover {
+    background-color: darken($primary-color, 10%); // Darken on hover
+}
+
+.btn-outline-secondary {
+    color: $secondary-color; // Outline button color
+    border: 2px solid $secondary-color; // Outline border
+
+    &:hover {
+        background-color: $secondary-color; // Change background on hover
+        color: white; // Change text color on hover
+    }
+}
+
+// Footer links styles
+.footer-links {
+    text-align: center; // Center footer links
+    margin-top: 20px; // Space above footer links
+
+    a {
+        color: $secondary-color; // Link color
+        text-decoration: none; // No underline
+        margin: 0 10px; // Space between links
+
+        &:hover {
+            text-decoration: underline; // Underline on hover
+        }
+    }
+}

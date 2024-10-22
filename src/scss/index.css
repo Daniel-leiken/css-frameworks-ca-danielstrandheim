@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+body {
+  background-color: #FFFFFF;
+  font-family: "Montserrat", sans-serif;
+  color: #333333;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: #F7F7F7;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.auth-header {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+.navbar {
+  background-color: #FFFFFF;
+  border-bottom: 2px solid #D94E48;
+  transition: background-color 0.3s ease;
+}
+.navbar.shadow-sm {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.navbar .navbar-brand {
+  font-size: 1.5rem;
+}
+.navbar .nav-link {
+  color: #333333;
+  font-weight: 500;
+  margin-left: 15px;
+  transition: color 0.3s;
+}
+.navbar .nav-link:hover {
+  color: #c52f29;
+}
+.navbar .dropdown-item {
+  color: #333333;
+}
+.navbar .dropdown-item:hover {
+  background-color: #D94E48;
+  color: white;
+}
+
+.tagline {
+  text-align: center;
+  color: #A59BB0;
+  margin-bottom: 30px;
+}
+
+.auth-container {
+  margin-top: 50px;
+}
+
+.card {
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+input[type=text],
+input[type=password] {
+  border-radius: 4px;
+}
+
+.btn {
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #D94E48;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #c52f29;
+}
+
+.btn-outline-secondary {
+  color: #A59BB0;
+  border: 2px solid #A59BB0;
+}
+.btn-outline-secondary:hover {
+  background-color: #A59BB0;
+  color: white;
+}
+
+.footer-links {
+  text-align: center;
+  margin-top: 20px;
+}
+.footer-links a {
+  color: #A59BB0;
+  text-decoration: none;
+  margin: 0 10px;
+}
+.footer-links a:hover {
+  text-decoration: underline;
+}/*# sourceMappingURL=index.css.map */
