@@ -2,134 +2,134 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 // Variables for colors and fonts
-$primary-color: #D94E48; // Coral Red
-$secondary-color: #A59BB0; // Lavender Gray
-$background-color: #FFFFFF; // White
-$card-background: #F7F7F7; // Light Gray
-$text-color: #333333; // Dark Gray
-$font-family: 'Montserrat', sans-serif; // Modern font family
+$primary-color: #D94E48;
+$secondary-color: #A59BB0;
+$background-color: #FFFFFF;
+$card-background: #F7F7F7;
+$text-color: #333333;
+$font-family: 'Montserrat', sans-serif;
 
 // Global styles
 body {
-    background-color: $background-color; // Body background
-    font-family: $font-family; // Font family for body
-    color: $text-color; // Text color
-    margin: 0; // Remove default margin
-    padding: 0; // Remove default padding
+    background-color: $background-color; 
+    font-family: $font-family; 
+    color: $text-color;
+    margin: 0;
+    padding: 0;
 }
 
 // Navbar styles
 .navbar {
-    background-color: $card-background; // Navbar background
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); // Subtle shadow
+    background-color: $card-background;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 // Header styles
 .auth-header {
-    font-size: 2.5rem; // Increase font size for the header
-    font-weight: bold; // Make the font bold
-    text-align: center; // Center text
-    color: $text-color; // Use the text color defined in your variables
-    margin-bottom: 20px; // Space below the header
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: $text-color;
+    margin-bottom: 20px;
 }
 .navbar {
-    background-color: $background-color; // Use your background color
-    border-bottom: 2px solid $primary-color; // Bottom border for distinction
-    transition: background-color 0.3s ease; // Smooth transition on scroll
+    background-color: $background-color;
+    border-bottom: 2px solid $primary-color;
+    transition: background-color 0.3s ease;
 
     &.shadow-sm {
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Subtle shadow
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .navbar-brand {
-        font-size: 1.5rem; // Increase the brand font size
+        font-size: 1.5rem;
     }
 
     .nav-link {
-        color: $text-color; // Text color for links
-        font-weight: 500; // Slightly bolder font for better visibility
-        margin-left: 15px; // Space between links
-        transition: color 0.3s; // Smooth transition on hover
+        color: $text-color; 
+        font-weight: 500; 
+        margin-left: 15px;
+        transition: color 0.3s;
 
         &:hover {
-            color: darken($primary-color, 10%); // Darken color on hover
+            color: darken($primary-color, 10%);
         }
     }
 
     .dropdown-item {
-        color: $text-color; // Text color for dropdown items
+        color: $text-color;
 
         &:hover {
-            background-color: $primary-color; // Change background on hover
-            color: white; // Change text color on hover
+            background-color: $primary-color;
+            color: white;
         }
     }
 }
 
 // Tagline styles
 .tagline {
-    text-align: center; // Center text
-    color: $secondary-color; // Tagline text color
-    margin-bottom: 30px; // Margin below tagline
+    text-align: center;
+    color: $secondary-color;
+    margin-bottom: 30px;
 }
 
 // Authentication container styles
 .auth-container {
-    margin-top: 50px; // Space above the auth container
+    margin-top: 50px;
 }
 
 // Card styles
 .card {
-    border-radius: 8px; // Rounded corners
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); // Card shadow
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 // Form styles
 .form-label {
-    font-weight: bold; // Bold labels
+    font-weight: bold;
 }
 
 input[type="text"],
 input[type="password"] {
-    border-radius: 4px; // Rounded corners for inputs
+    border-radius: 4px;
 }
 
 // Button styles
 .btn {
-    transition: background-color 0.3s ease; // Smooth transition for buttons
+    transition: background-color 0.3s ease;
 }
 
 .btn-primary {
-    background-color: $primary-color; // Primary button color
-    border: none; // No border
+    background-color: $primary-color;
+    border: none;
 }
 
 .btn-primary:hover {
-    background-color: darken($primary-color, 10%); // Darken on hover
+    background-color: darken($primary-color, 10%);
 }
 
 .btn-outline-secondary {
-    color: $secondary-color; // Outline button color
-    border: 2px solid $secondary-color; // Outline border
+    color: $secondary-color;
+    border: 2px solid $secondary-color;
 
     &:hover {
-        background-color: $secondary-color; // Change background on hover
-        color: white; // Change text color on hover
+        background-color: $secondary-color;
+        color: white;
     }
 }
 
 // Footer links styles
 .footer-links {
-    text-align: center; // Center footer links
-    margin-top: 20px; // Space above footer links
+    text-align: center;
+    margin-top: 20px;
 
     a {
-        color: $secondary-color; // Link color
-        text-decoration: none; // No underline
-        margin: 0 10px; // Space between links
+        color: $secondary-color;
+        text-decoration: none;
+        margin: 0 10px;
 
         &:hover {
-            text-decoration: underline; // Underline on hover
+            text-decoration: underline;
         }
     }
 }
