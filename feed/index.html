@@ -57,18 +57,18 @@
                     <div>Feed</div>
                 </div>
                       <!-- Search Bar -->
-        <div class="mb-4">
-            <input type="text" class="form-control" placeholder="Search posts..." aria-label="Search">
-        </div>
+<!-- Search Bar -->
+<div class="mb-4">
+    <input type="text" id="search-input" class="form-control" placeholder="Search posts..." aria-label="Search">
+</div>
            <!-- Sort Options -->
            <div class="mb-4">
-            <select class="form-select">
-                <option selected>Sort by</option>
-                <option value="1">Newest</option>
-                <option value="2">Oldest</option>
-                <option value="3">Most Liked</option>
-                <option value="4">Most Commented</option>
-            </select>
+            <select id="sort-filter" class="form-select">
+                <option value="newest" selected>Newest</option>
+                <option value="oldest">Oldest</option>
+                <option value="title-asc">Title (A-Z)</option>
+                <option value="title-desc">Title (Z-A)</option>
+              </select>
         </div>
     <!-- Create New Post Form -->
     <div class="card mb-4">

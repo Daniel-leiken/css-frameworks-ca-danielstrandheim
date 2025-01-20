@@ -6,15 +6,33 @@ const options = {
 };
 
 // Fetch and display posts
-async function fetchPosts() {
+async function fetchPosts(sortBy = 'newest', searchQuery = '') {
   try {
-    const response = await fetch('https://v2.api.noroff.dev/social/posts', options);
+    let url = 'https://v2.api.noroff.dev/social/posts';
+
+    // Add sorting query if provided
+    if (sortBy) {
+      url += `?_sort=${sortBy}`;
+    }
+
+    // Add search query if provided
+    if (searchQuery) {
+      url += `&q=${encodeURIComponent(searchQuery)}`;
+    }
+
+    console.log(`Fetching from URL: ${url}`); // Debugging URL
+
+    const response = await fetch(url, options);
     if (!response.ok) {
       throw new Error(`Error fetching posts: ${response.statusText}`);
     }
 
     const posts = await response.json();
-    renderPosts(posts.data); // Make sure you pass the correct data property
+
+    // Sort posts based on the selected criteria
+    const sortedPosts = sortPosts(posts.data, sortBy);
+
+    renderPosts(sortedPosts); // Render sorted posts
   } catch (error) {
     console.error(error.message);
     document.getElementById('post-feed').innerText = 'Failed to load posts. Please try again.';
@@ -35,12 +53,13 @@ function renderPosts(posts) {
 
   posts.forEach((post, index) => {
     const postElement = document.createElement('div');
-    postElement.className = 'col-md-4 mb-4';
+    // Responsive Bootstrap classes: 1 column on mobile, 2 on tablets, 3 on desktops
+    postElement.className = 'col-12 col-md-6 col-lg-4 mb-4';
 
     // Check if the post has media (image)
-    const mediaContent = post.media && post.media.url ? 
-      `<img src="${post.media.url}" alt="${post.media.alt}" class="card-img-top"/>` :
-      `<img src="${fallbackImage}" alt="Fallback Image" class="card-img-top"/>`;
+    const mediaContent = post.media && post.media.url
+      ? `<img src="${post.media.url}" alt="${post.media.alt}" class="card-img-top"/>`
+      : `<img src="${fallbackImage}" alt="Fallback Image" class="card-img-top"/>`;
 
     // Create the post HTML structure
     postElement.innerHTML = `
@@ -57,15 +76,44 @@ function renderPosts(posts) {
     // Append each post card to the row
     row.appendChild(postElement);
 
-    // Every 3 posts, append the row to the postFeed container
+    // Append the row to the postFeed container after processing all posts
     if ((index + 1) % 3 === 0 || index === posts.length - 1) {
       postFeed.appendChild(row);
-      // Create a new row for the next set of 3 posts
       row = document.createElement('div');
       row.className = 'row';
     }
   });
 }
+
+// Sort posts based on the selected criteria
+function sortPosts(posts, sortBy) {
+  switch (sortBy) {
+    case 'newest':
+      return posts.sort((a, b) => new Date(b.created) - new Date(a.created));
+    case 'oldest':
+      return posts.sort((a, b) => new Date(a.created) - new Date(b.created));
+    case 'title-asc':
+      return posts.sort((a, b) => a.title.localeCompare(b.title));
+    case 'title-desc':
+      return posts.sort((a, b) => b.title.localeCompare(a.title));
+    default:
+      return posts; // Return unsorted if no valid sortBy is provided
+  }
+}
+
+// Add event listener for the "Sort by" dropdown
+document.getElementById('sort-filter').addEventListener('change', function () {
+  const sortBy = this.value; // Get the selected sorting option
+  const searchQuery = document.getElementById('search-input').value; // Get the current search query
+  fetchPosts(sortBy, searchQuery); // Fetch and render posts based on sorting and search
+});
+
+// Add event listener for the "Search" input field
+document.getElementById('search-input').addEventListener('input', function () {
+  const searchQuery = this.value; // Get the current search query
+  const sortBy = document.getElementById('sort-filter').value; // Get the selected sorting option
+  fetchPosts(sortBy, searchQuery); // Fetch and render posts based on search and sorting
+});
 
 // Call the fetchPosts function on page load
 fetchPosts();
