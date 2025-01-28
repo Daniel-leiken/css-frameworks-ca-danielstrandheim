@@ -59,7 +59,7 @@ const options = {
       localStorage.setItem('accessToken', result.data.accessToken);
   
       // Redirect to profile page
-      window.location.href = 'profile/index.html';
+      window.location.href = '/profile/index.html';
     } catch (error) {
       // Display error message
       document.getElementById('error-message').innerText = error.message;
