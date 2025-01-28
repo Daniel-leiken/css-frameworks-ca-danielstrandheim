@@ -26,15 +26,15 @@
                 <!-- Card for Authentication -->
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="text-center mb-4">Login or Register</h4>
+                        <h4 class="text-center mb-4">Login</h4>
                         <!-- Authentication Form -->
                         <form id="auth-form">
                             <!-- Username -->
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email or username</label>
+                                <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" required>
                                 <div class="invalid-feedback">
-                                    Please enter a email or username.
+                                    Please enter an email.
                                 </div>
                             </div>
                             <!-- Password -->
@@ -48,7 +48,7 @@
                             <!-- Login/Register Button -->
                             <div class="d-grid gap-2">
                                 <button type="submit" class="btn btn-primary">Login</button>
-                                <button type="button" class="btn btn-outline-secondary">Register</button>
+                                <button type="button" class="btn btn-outline-secondary" id="register-btn">Register</button>
                             </div>
                         </form>
                         <p id="error-message"></p>
@@ -68,6 +68,13 @@
 
     <!-- script.js -->
     <script src="scripts/login.js"></script>
+
+    <!-- Register Button Navigation Script -->
+    <script>
+        document.getElementById('register-btn').addEventListener('click', function() {
+            window.location.href = 'register/index.html'; // Navigate to register page
+        });
+    </script>
 
     <!-- Form Validation Script -->
     <script>

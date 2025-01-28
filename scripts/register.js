@@ -6,17 +6,11 @@ const options = {
   };
   
   // Handle click on the register button
-  document.getElementById('register-btn').addEventListener('click', async (event) => {
+  document.getElementById('auth-form').addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent form from refreshing the page
   
-    const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    const bio = document.getElementById('bio').value || ''; // Optional
-    const avatarUrl = document.getElementById('avatar-url').value || ''; // Optional
-    const avatarAlt = document.getElementById('avatar-alt').value || ''; // Optional
-    const bannerUrl = document.getElementById('banner-url').value || ''; // Optional
-    const bannerAlt = document.getElementById('banner-alt').value || ''; // Optional
   
     // Validate email to ensure it's a valid @stud.noroff.no email
     if (!email.match(/^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$/)) {
@@ -39,13 +33,8 @@ const options = {
           'X-Noroff-API-Key': '486ac6ab-b456-4770-bd5e-b4ea0f8a7582',
         },
         body: JSON.stringify({
-          name,
           email,
           password,
-          bio,
-          avatar: avatarUrl ? { url: avatarUrl, alt: avatarAlt } : undefined,
-          banner: bannerUrl ? { url: bannerUrl, alt: bannerAlt } : undefined,
-          venueManager: false // You can set this to true if needed
         }),
       });
   

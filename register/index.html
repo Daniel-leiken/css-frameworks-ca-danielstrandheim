@@ -8,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/src/scss/index.css">
     <link rel="icon" href="/images/C Logo.png" type="image/x-icon">
-
 </head>
 <body>
     <!-- Header / Navbar -->
@@ -45,9 +44,10 @@
                                     Password must be at least 8 characters long.
                                 </div>
                             </div>
-                            <!-- Login/Register Button -->
+                            <!-- Register/Back to Login Button -->
                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary">Register</button>
+                                <button type="click" class="btn btn-primary">Register</button>
+                                <button type="button" class="btn btn-outline-secondary" id="back-to-login-btn">Back to login page</button>
                             </div>
                         </form>
                         <p id="error-message"></p>
@@ -66,7 +66,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- script.js -->
-    <script src="scripts/register.js"></script>
+    <script src="/scripts/register.js"></script>
+
+    <!-- Back to Login Page Script -->
+    <script>
+        document.getElementById('back-to-login-btn').addEventListener('click', function() {
+            window.location.href = '/index.html'; // Navigate back to login page
+        });
+    </script>
 
     <!-- Form Validation Script -->
     <script>
