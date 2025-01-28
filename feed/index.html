@@ -56,52 +56,77 @@
                     <img src="/images/Default_pfp.svg.png" width="100px" alt="Profile Picture" class="mb-3 rounded-circle">
                     <div>Feed</div>
                 </div>
-                      <!-- Search Bar -->
-<!-- Search Bar -->
-<div class="mb-4">
-    <input type="text" id="search-input" class="form-control" placeholder="Search posts..." aria-label="Search">
-</div>
-           <!-- Sort Options -->
-           <div class="mb-4">
-            <select id="sort-filter" class="form-select">
-                <option value="newest" selected>Newest</option>
-                <option value="oldest">Oldest</option>
-                <option value="title-asc">Title (A-Z)</option>
-                <option value="title-desc">Title (Z-A)</option>
-              </select>
+
+                <!-- Search Bar -->
+                <div class="mb-4">
+                    <input type="text" id="search-input" class="form-control" placeholder="Search posts..." aria-label="Search">
+                </div>
+
+                <!-- Sort Options -->
+                <div class="mb-4">
+                    <select id="sort-filter" class="form-select">
+                        <option value="newest" selected>Newest</option>
+                        <option value="oldest">Oldest</option>
+                        <option value="title-asc">Title (A-Z)</option>
+                        <option value="title-desc">Title (Z-A)</option>
+                    </select>
+                </div>
+
+                <!-- Create New Post Form -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h4 class="mb-3">Create a New Post</h4>
+                        <form id="post-form" enctype="multipart/form-data">
+                            <!-- Post Title -->
+                            <div class="mb-3">
+                                <label for="post-title" class="form-label">Post Title</label>
+                                <input type="text" class="form-control" id="post-title" name="post-title" required>
+                            </div>
+                            <!-- Post Image URL -->
+                            <div class="mb-3">
+                                <label for="post-image-url" class="form-label">Post Image URL</label>
+                                <input type="text" class="form-control" id="post-image-url" name="post-image-url" placeholder="https://url.com/image.jpg">
+                            </div>
+                            <!-- Post Content -->
+                            <div class="mb-3">
+                                <label for="post-content" class="form-label">Post Content</label>
+                                <textarea class="form-control" id="post-content" name="post-content" rows="3" required></textarea>
+                            </div>
+                            <!-- Submit Button -->
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Post</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Posts List -->
+                <h2 class="text-center">Posts</h2>
+                <div id="post-feed"></div>
+            </div>
         </div>
-    <!-- Create New Post Form -->
-    <div class="card mb-4">
-        <div class="card-body">
-            <h4 class="mb-3">Create a New Post</h4>
-            <form id="post-form" enctype="multipart/form-data">
-                <!-- Post Title -->
-                <div class="mb-3">
-                    <label for="post-title" class="form-label">Post Title</label>
-                    <input type="text" class="form-control" id="post-title" name="post-title" required>
-                </div>
-                <!-- Post Image Upload -->
-                <div class="mb-3">
-                    <label for="post-image" class="form-label">Post Image</label>
-                    <input type="file" class="form-control" id="post-image" name="post-image" accept="image/*">
-                </div>
-                <!-- Post Content -->
-                <div class="mb-3">
-                    <label for="post-content" class="form-label">Post Content</label>
-                    <textarea class="form-control" id="post-content" name="post-content" rows="3" required></textarea>
-                </div>
-                <!-- Submit Button -->
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary">Post</button>
-                </div>
-            </form>
-        </div>
+
+        <!-- Pagination (if needed) -->
+        <div id="pagination"></div>
     </div>
 
-                        <!-- Posts List -->
-        <h2 class="text-center">Posts</h2>                
-        <div id="post-feed">
-        <div id="pagination"></div>
+    <!-- Modal for Post Details -->
+    <div id="post-details-modal" class="modal fade" tabindex="-1" aria-labelledby="post-details-modal-label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="post-details-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="post-details-image" class="img-fluid mb-3" alt="Post Image"/>
+                    <p id="post-details-body"></p>
+                    <p id="post-details-created"></p>
+                    <p id="post-details-tags"></p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer class="footer">
         <div class="footer-links">
@@ -110,13 +135,12 @@
         </div>
     </footer>
 
-
-        
-    <!-- Get Posts Script -->  
+    <!-- Get Posts Script -->
     <script src="/scripts/posts.js"></script>
-        
-    <!-- Bootstrap JS and Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Popper.js (for Bootstrap) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
