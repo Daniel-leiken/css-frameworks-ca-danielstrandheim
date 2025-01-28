@@ -1,6 +1,6 @@
 const options = {
   headers: {
-    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVpa2VuIiwiZW1haWwiOiJEYW5TdHIxNjIyMUBzdHVkLm5vcm9mZi5ubyIsImlhdCI6MTczNjg2MjU0NX0.6jkhKB8V-xHdJcFJ6cso8nCUTa_xgV2DJT4knWnoqJ0',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTGVpa2VuIiwiZW1haWwiOiJEYW5TdHIxNjIyMUBzdHVkLm5vcm9mZi5ubyIsImlhdCI6MTczNjg2MjU0NX0.6jkhKB8V-xHdJcFJ6cso8nCUTa_xgV2DJT4knWnoqJ0',  
     'X-Noroff-API-Key': 'f1174243-8934-4994-8987-80c3aa38f4a9',
   },
 };
@@ -20,19 +20,15 @@ async function fetchPosts(sortBy = 'newest', searchQuery = '') {
       }
     }
 
-    console.log(`Fetching from URL: ${url}`); // Debugging URL
-
     const response = await fetch(url, options);
     if (!response.ok) {
       throw new Error(`Error fetching posts: ${response.statusText}`);
     }
 
     const posts = await response.json();
-
-    // If there's a search query, we don't need to sort again since it’s already filtered by search
     const sortedPosts = searchQuery ? posts.data : sortPosts(posts.data, sortBy);
 
-    renderPosts(sortedPosts); // Render sorted or filtered posts
+    renderPosts(sortedPosts);
   } catch (error) {
     console.error(error.message);
     document.getElementById('post-feed').innerText = 'Failed to load posts. Please try again.';
@@ -42,26 +38,21 @@ async function fetchPosts(sortBy = 'newest', searchQuery = '') {
 // Render posts in the DOM
 function renderPosts(posts) {
   const postFeed = document.getElementById('post-feed');
-  postFeed.innerHTML = ''; // Clear any existing posts
+  postFeed.innerHTML = '';
 
-  // Create a container for the posts
   let row = document.createElement('div');
   row.className = 'row';
 
-  // Fallback image URL
   const fallbackImage = '/images/default_image.png';
 
   posts.forEach((post, index) => {
     const postElement = document.createElement('div');
-    // Responsive Bootstrap classes: 1 column on mobile, 2 on tablets, 3 on desktops
     postElement.className = 'col-12 col-md-6 col-lg-4 mb-4';
 
-    // Check if the post has media (image)
     const mediaContent = post.media && post.media.url
       ? `<img src="${post.media.url}" alt="${post.media.alt}" class="card-img-top"/>`
       : `<img src="${fallbackImage}" alt="Fallback Image" class="card-img-top"/>`;
 
-    // Create the post HTML structure
     postElement.innerHTML = `
       <div class="card">
         ${mediaContent}
@@ -73,10 +64,8 @@ function renderPosts(posts) {
       </div>
     `;
 
-    // Append each post card to the row
     row.appendChild(postElement);
 
-    // Append the row to the postFeed container after processing all posts
     if ((index + 1) % 3 === 0 || index === posts.length - 1) {
       postFeed.appendChild(row);
       row = document.createElement('div');
@@ -84,7 +73,6 @@ function renderPosts(posts) {
     }
   });
 
-  // Add event listeners to the "Read More" buttons
   document.querySelectorAll('.read-more-button').forEach(button => {
     button.addEventListener('click', function (event) {
       const postId = this.getAttribute('data-post-id');
@@ -105,19 +93,16 @@ function sortPosts(posts, sortBy) {
     case 'title-desc':
       return posts.sort((a, b) => b.title.localeCompare(a.title));
     default:
-      return posts; // Return unsorted if no valid sortBy is provided
+      return posts;
   }
 }
 
 // View a single post by ID
 async function viewPostById(postId, event) {
-  // Prevent the default anchor tag behavior
   event.preventDefault();
 
   try {
     const url = `https://v2.api.noroff.dev/social/posts/${postId}`;
-    console.log(`Fetching post details from URL: ${url}`);
-
     const response = await fetch(url, options);
     if (!response.ok) {
       throw new Error(`Error fetching post details: ${response.statusText}`);
@@ -125,19 +110,16 @@ async function viewPostById(postId, event) {
 
     const post = await response.json();
 
-    // Populate the modal with post data
     document.getElementById('post-details-title').innerText = post.data.title;
     document.getElementById('post-details-body').innerText = post.data.body;
     document.getElementById('post-details-created').innerText = `Created: ${new Date(post.data.created).toLocaleDateString()}`;
     document.getElementById('post-details-tags').innerText = `Tags: ${post.data.tags.join(', ')}`;
 
-    // Handle image
     const postImage = post.data.media && post.data.media.url ? post.data.media.url : '/images/default_image.png';
     document.getElementById('post-details-image').src = postImage;
 
-    // Show the modal using Bootstrap's Modal API
     const modal = new bootstrap.Modal(document.getElementById('post-details-modal'));
-    modal.show(); // This is the key part
+    modal.show();
 
   } catch (error) {
     console.error(error.message);
@@ -147,16 +129,16 @@ async function viewPostById(postId, event) {
 
 // Add event listener for the "Sort by" dropdown
 document.getElementById('sort-filter').addEventListener('change', function () {
-  const sortBy = this.value; // Get the selected sorting option
-  const searchQuery = document.getElementById('search-input').value; // Get the current search query
-  fetchPosts(sortBy, searchQuery); // Fetch and render posts based on sorting and search
+  const sortBy = this.value;
+  const searchQuery = document.getElementById('search-input').value;
+  fetchPosts(sortBy, searchQuery);
 });
 
 // Add event listener for the "Search" input field
 document.getElementById('search-input').addEventListener('input', function () {
-  const searchQuery = this.value; // Get the current search query
-  const sortBy = document.getElementById('sort-filter').value; // Get the selected sorting option
-  fetchPosts(sortBy, searchQuery); // Fetch and render posts based on search and sorting
+  const searchQuery = this.value;
+  const sortBy = document.getElementById('sort-filter').value;
+  fetchPosts(sortBy, searchQuery);
 });
 
 // Add event listener for the "Create Post" form submission
@@ -169,10 +151,9 @@ document.getElementById('post-form').addEventListener('submit', async function (
     body: formData.get('post-content'),
   };
 
-  // Check if a file is selected
-  if (formData.get('post-image')) {
-    const image = formData.get('post-image');
-    const imageUrl = await uploadImage(image); // Upload image to the server and get the URL
+  // Check if the image URL is provided
+  const imageUrl = formData.get('post-image-url');
+  if (imageUrl) {
     postData.media = { url: imageUrl };
   }
 
@@ -184,7 +165,7 @@ document.getElementById('post-form').addEventListener('submit', async function (
         ...options.headers,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ data: postData }),
+      body: JSON.stringify(postData),
     });
 
     if (!response.ok) {
@@ -200,13 +181,6 @@ document.getElementById('post-form').addEventListener('submit', async function (
     console.error(error.message);
   }
 });
-
-// Upload image to the server (simulated)
-async function uploadImage(image) {
-  // You can implement image upload logic here (e.g., to cloud storage)
-  // For now, we simulate the upload by returning a URL
-  return '/images/uploaded_image.png'; // Example URL
-}
 
 // Call the fetchPosts function on page load
 fetchPosts();
