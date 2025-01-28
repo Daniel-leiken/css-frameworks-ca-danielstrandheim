@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatterHub - Login or Register</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="src/scss/index.css">
+    <link rel="icon" href="/images/C Logo.png" type="image/x-icon">
+
+</head>
+<body>
+    <!-- Header / Navbar -->
+
+    <div class="container auth-container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <!-- Logo / Branding -->
+                <div class="auth-header">
+                    <img src="/images/C Logo.png" width="250px" alt="ChatterHub Logo" class="mb-3">
+                    <div>Welcome to ChatterHub</div>
+                </div>
+                <!-- Tagline -->
+                <p class="tagline">Connect with your friends and the world around you.</p>
+                <!-- Card for Authentication -->
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="text-center mb-4">Login or Register</h4>
+                        <!-- Authentication Form -->
+                        <form id="auth-form">
+                            <!-- Username -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email or username</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                                <div class="invalid-feedback">
+                                    Please enter a email or username.
+                                </div>
+                            </div>
+                            <!-- Password -->
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" required minlength="8">
+                                <div class="invalid-feedback">
+                                    Password must be at least 8 characters long.
+                                </div>
+                            </div>
+                            <!-- Login/Register Button -->
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                                <button type="button" class="btn btn-outline-secondary">Register</button>
+                            </div>
+                        </form>
+                        <p id="error-message"></p>
+                    </div>
+                </div>
+                <!-- Footer Links -->
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a> | 
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- script.js -->
+    <script src="scripts/login.js"></script>
+
+    <!-- Form Validation Script -->
+    <script>
+        (function () {
+            'use strict';
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+</body>
+</html>
