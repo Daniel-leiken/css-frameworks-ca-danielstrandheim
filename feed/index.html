@@ -110,23 +110,26 @@
         <div id="pagination"></div>
     </div>
 
-    <!-- Modal for Post Details -->
-    <div id="post-details-modal" class="modal fade" tabindex="-1" aria-labelledby="post-details-modal-label" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="post-details-title"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <img id="post-details-image" class="img-fluid mb-3" alt="Post Image"/>
-                    <p id="post-details-body"></p>
-                    <p id="post-details-created"></p>
-                    <p id="post-details-tags"></p>
-                </div>
-            </div>
+<!-- Modal for Post Details -->
+<div id="post-details-modal" class="modal fade" tabindex="-1" aria-labelledby="post-details-modal-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="post-details-title"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+          <img id="post-details-image" class="img-fluid mb-3" alt="Post Image"/>
+          <p id="post-details-body"></p>
+          <p id="post-details-created"></p>
+          <p id="post-details-tags"></p>
+          <div id="error-message" class="alert alert-danger d-none"></div> <!-- Error message for edit/delete -->
+          <button id="edit-post" class="btn btn-warning">Edit</button>
+          <button id="delete-post" class="btn btn-danger">Delete</button>
+        </div>
+      </div>
     </div>
+  </div>
 
     <footer class="footer">
         <div class="footer-links">
