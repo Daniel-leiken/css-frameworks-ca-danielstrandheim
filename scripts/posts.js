@@ -11,12 +11,36 @@ let currentPostId = null;
 async function fetchPosts(sortBy = 'newest', searchQuery = '') {
   try {
     let url = 'https://v2.api.noroff.dev/social/posts';
+    const params = new URLSearchParams();
 
     if (searchQuery) {
-      url = `https://v2.api.noroff.dev/social/posts/search?q=${encodeURIComponent(searchQuery)}`;
-    } else if (sortBy) {
-      url += `?_sort=${sortBy}`;
+      url = 'https://v2.api.noroff.dev/social/posts/search';
+      params.set('q', searchQuery);
     }
+
+    // Sorting logic
+    if (sortBy) {
+      switch (sortBy) {
+        case 'newest':
+          params.set('sort', 'created');
+          params.set('sortOrder', 'desc');
+          break;
+        case 'oldest':
+          params.set('sort', 'created');
+          params.set('sortOrder', 'asc');
+          break;
+        case 'title-asc':
+          params.set('sort', 'title');
+          params.set('sortOrder', 'asc');
+          break;
+        case 'title-desc':
+          params.set('sort', 'title');
+          params.set('sortOrder', 'desc');
+          break;
+      }
+    }
+
+    url += `?${params.toString()}`;
 
     const response = await fetch(url, options);
     if (!response.ok) {
@@ -24,12 +48,19 @@ async function fetchPosts(sortBy = 'newest', searchQuery = '') {
     }
 
     const posts = await response.json();
-    renderPosts(posts.data);
+    if (Array.isArray(posts)) {
+      renderPosts(posts);
+    } else if (posts.data) {
+      renderPosts(posts.data);
+    } else {
+      renderPosts([]);
+    }
   } catch (error) {
     console.error(error.message);
     document.getElementById('post-feed').innerText = 'Failed to load posts. Please try again.';
   }
 }
+
 
 function renderPosts(posts) {
   const postFeed = document.getElementById('post-feed');
