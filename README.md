@@ -36,18 +36,21 @@ Usage
 
 	1.	Start the project using Live Server.
 	2.	Navigate to the following routes:
-	•	/login.html for login
-	•	/register.html for registration
-	•	/feed.html to view the post feed
+	•	login/index.html for login
+	•	register/index.html for registration
+	•	feed/index.html to view the post feed
 
 Project Structure
 
 chatterhub/
 │
-├── index.html           # Home page
-├── login.html            # Login page
-├── register.html         # Registration page
-├── feed.html             # Post feed page
+├── index.html            # Home page
+├── login/               
+│   └── index.html        # Login page
+├── register/               
+│   └── index.html        # Registration page
+├── feed/               
+│   └── index.html        # Post feed page
 ├── src/                  # Source files
 │   └── scss/             # SCSS styles
 ├── scripts/              # JavaScript files
@@ -61,6 +64,10 @@ API Integration
 Noroff API
 
 The application integrates with the Noroff API to fetch and display posts as well as handle user authentication. To access the API, make sure to use your valid API key and Authorization Bearer token.
+
+Project Management
+
+📌 Trello Board: [JavaScript 2 Course Assignment](https://trello.com/b/VYdUkY8J/javascript-2-course-assignment)
 
 Development Notes
 
