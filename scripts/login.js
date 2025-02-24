@@ -22,9 +22,11 @@ document.getElementById('auth-form').addEventListener('submit', async (event) =>
     const result = await response.json();
     console.log('Login successful:', result);
 
-    // Store the access token in a cookie
-    document.cookie = `accessToken=${result.data.accessToken}; path=/; secure; HttpOnly; SameSite=Strict; max-age=3600`;
-    console.log('Access Token Stored in Cookie:', result.data.accessToken);
+    // Store user info in localStorage
+    localStorage.setItem('accessToken', result.data.accessToken);
+    localStorage.setItem('user', JSON.stringify(result.data)); // Store full user details
+
+    console.log('User data stored:', result.data);
 
     // Redirect to profile page
     window.location.href = 'profile/index.html';

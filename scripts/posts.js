@@ -10,7 +10,7 @@ let currentPostId = null;
 // Fetch and display posts
 async function fetchPosts(sortBy = 'newest', searchQuery = '') {
   try {
-    let url = 'https://v2.api.noroff.dev/social/posts';
+    let url = 'https://v2.api.noroff.dev/social/posts?_author=true';
     const params = new URLSearchParams();
 
     if (searchQuery) {
@@ -60,7 +60,6 @@ async function fetchPosts(sortBy = 'newest', searchQuery = '') {
     document.getElementById('post-feed').innerText = 'Failed to load posts. Please try again.';
   }
 }
-
 
 function renderPosts(posts) {
   const postFeed = document.getElementById('post-feed');
@@ -112,7 +111,7 @@ async function viewPostById(postId, event) {
   currentPostId = postId;
 
   try {
-    const url = `https://v2.api.noroff.dev/social/posts/${postId}`;
+    const url = `https://v2.api.noroff.dev/social/posts/${postId}?_author=true`;
     const response = await fetch(url, options);
     if (!response.ok) {
       throw new Error(`Error fetching post details: ${response.statusText}`);
@@ -124,6 +123,7 @@ async function viewPostById(postId, event) {
     document.getElementById('post-details-body').innerText = post.data.body;
     document.getElementById('post-details-created').innerText = `Created: ${new Date(post.data.created).toLocaleDateString()}`;
     document.getElementById('post-details-tags').innerText = `Tags: ${post.data.tags.join(', ')}`;
+    document.getElementById('post-details-author').innerText = `Author: ${post.data.author?.name || 'Unknown'}`;
     document.getElementById('post-details-image').src = post.data.media?.url || '/images/default_image.png';
 
     const modal = new bootstrap.Modal(document.getElementById('post-details-modal'));
@@ -208,6 +208,7 @@ document.getElementById('search-input').addEventListener('input', function () {
   fetchPosts(sortBy, searchQuery);
 });
 
+// Handle post creation and assign the logged-in user as the author
 document.getElementById('post-form').addEventListener('submit', async function (event) {
   event.preventDefault();
 
@@ -220,6 +221,17 @@ document.getElementById('post-form').addEventListener('submit', async function (
   const imageUrl = formData.get('post-image-url');
   if (imageUrl) {
     postData.media = { url: imageUrl };
+  }
+
+  // Get the logged-in user's name from the access token
+  const accessToken = document.cookie
+    .split('; ')
+    .find(row => row.startsWith('accessToken'))
+    ?.split('=')[1];
+
+  if (accessToken) {
+    const decodedToken = JSON.parse(atob(accessToken.split('.')[1]));
+    postData.author = { name: decodedToken.name }; // Assigning the logged-in user as the author
   }
 
   try {
