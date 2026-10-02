@@ -7,11 +7,6 @@ body {
   padding: 0;
 }
 
-.navbar {
-  background-color: #F7F7F7;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
 .auth-header {
   font-size: 2.5rem;
   font-weight: bold;
@@ -22,6 +17,7 @@ body {
 
 .navbar {
   background-color: #FFFFFF;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-bottom: 2px solid #D94E48;
   transition: background-color 0.3s ease;
 }
@@ -38,7 +34,7 @@ body {
   transition: color 0.3s;
 }
 .navbar .nav-link:hover {
-  color: #c52f29;
+  color: rgb(197.0769230769, 47.3846153846, 40.9230769231);
 }
 .navbar .dropdown-item {
   color: #333333;
@@ -82,7 +78,7 @@ input[type=password] {
 }
 
 .btn-primary:hover {
-  background-color: #c52f29;
+  background-color: rgb(197.0769230769, 47.3846153846, 40.9230769231);
 }
 
 .btn-outline-secondary {
@@ -106,4 +102,6 @@ input[type=password] {
 }
 .footer-links a:hover {
   text-decoration: underline;
-}/*# sourceMappingURL=index.css.map */
+}
+
+/*# sourceMappingURL=index.css.map */
