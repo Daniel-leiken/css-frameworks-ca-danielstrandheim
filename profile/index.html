@@ -60,7 +60,7 @@
 <div class="card">
     <div class="card-body text-center">
         <h4 class="mb-4">Profile Details</h4>
-        <form id="profile-form" enctype="multipart/form-data">
+        <form id="profile-form" class="needs-validation" enctype="multipart/form-data" novalidate>
             <!-- Profile Image Upload -->
             <div class="mb-3">
                 <label for="profile-image" class="form-label">Profile Image</label>
@@ -73,11 +73,17 @@
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" class="form-control" id="username" name="username" value="YourUsername" required>
+                <div class="invalid-feedback">
+                    Please enter a username.
+                </div>
             </div>
             <!-- Email -->
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" value="your.email@example.com" required>
+                <div class="invalid-feedback">
+                    Please enter a valid email address.
+                </div>
             </div>
             <!-- Password -->
             <div class="mb-3">
