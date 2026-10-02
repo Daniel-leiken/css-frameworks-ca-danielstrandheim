@@ -25,6 +25,15 @@ body {
     text-align: center;
     color: $text-color;
     margin-bottom: 20px;
+
+    // Page title is an <h1> for accessibility; keep the original look
+    h1 {
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        color: inherit;
+        margin: 0;
+    }
 }
 
 // Navbar styles
