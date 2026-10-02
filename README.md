@@ -83,6 +83,10 @@ After getting feedback I went back and made these improvements:
 - **Stable Bootstrap.** Upgraded from the pre-release `5.3.0-alpha1` to `5.3.3`.
 - **Working build scripts.** `package.json` had template metadata and Sass scripts pointing at files that did not exist. I also merged a duplicated `.navbar` rule in the SCSS.
 
+## Contributing
+
+This is a school project, so I'm not looking for code contributions. If you find a bug or have a suggestion, feel free to [open an issue](https://github.com/Daniel-leiken/css-frameworks-ca-danielstrandheim/issues). Pull requests are welcome too: fork the repo, create a branch for your change and open a pull request so the change can be reviewed.
+
 ## Contact
 
 - GitHub: [Daniel-leiken](https://github.com/Daniel-leiken)
